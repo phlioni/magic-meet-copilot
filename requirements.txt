@@ -1,0 +1,6 @@
+customtkinter
+openai
+python-dotenv
+playwright
+google-cloud-speech
+sounddevice
