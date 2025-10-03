@@ -1,0 +1,52 @@
+=====================================================
+ Guia de Instalação e Uso v2.1 - Magic Meet Copilot
+=====================================================
+
+Olá! Para usar o Magic Meet Copilot, siga os passos abaixo.
+
+---------------------------------------------------------------------
+PASSO 1: REQUISITOS NO SEU COMPUTADOR (FEITO SÓ UMA VEZ)
+---------------------------------------------------------------------
+
+1.  **Python:** Você precisa ter o Python instalado.
+    * Baixe e instale a partir deste link: https://www.python.org/downloads/
+    * **IMPORTANTE:** Durante a instalação, marque a caixa "Add Python to PATH".
+
+2.  **OBS Studio:**
+    * Baixe e instale a partir deste link: https://obsproject.com/
+
+3.  **VB-CABLE (Cabo de Áudio Virtual):**
+    * Baixe e instale a partir deste link: https://vb-audio.com/Cable/
+
+---------------------------------------------------------------------
+PASSO 2: CONFIGURAR A "PONTE DE ÁUDIO" (FEITO SÓ UMA VEZ)
+---------------------------------------------------------------------
+
+Esta configuração fará com que o áudio da sua reunião seja enviado para o Copilot.
+
+1.  **No OBS:**
+    * Configure o "Dispositivo de monitoramento" para o "CABLE Input".
+    * Nas "Propriedades de Áudio Avançadas", configure a fonte de áudio da reunião para "Monitorar e enviar".
+
+2.  **No Windows:**
+    * Nas "Configurações de Som", configure o "Dispositivo de Entrada" padrão para o "CABLE Output".
+
+---------------------------------------------------------------------
+PASSO 3: PRIMEIRO USO DO MAGIC MEET COPILOT
+---------------------------------------------------------------------
+
+1.  Descompacte o arquivo `.zip` que você recebeu em uma pasta de sua preferência.
+2.  Dê um **duplo clique no arquivo `run.bat`**.
+
+    * Uma janela de terminal preta vai aparecer. Na primeira vez, ele vai instalar tudo o que precisa. Isso pode levar alguns minutos. Por favor, aguarde.
+    * Ao final, o Magic Meet Copilot irá iniciar automaticamente.
+
+---------------------------------------------------------------------
+PASSO 4: USO DIÁRIO
+---------------------------------------------------------------------
+
+1.  Abra o OBS.
+2.  Vá para a pasta do programa e dê um duplo clique no `run.bat`.
+    * A partir da segunda vez, ele será muito mais rápido e iniciará a aplicação em poucos segundos.
+
+=====================================================
