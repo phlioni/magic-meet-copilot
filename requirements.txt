@@ -3,4 +3,7 @@ openai
 python-dotenv
 playwright
 google-cloud-speech
-sounddevice
+sounddevice==0.4.6
+numpy==1.26.4
+cffi==1.16.0
+pyinstaller

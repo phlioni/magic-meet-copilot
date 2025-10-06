@@ -2,100 +2,57 @@
 
 **Magic Meet Copilot** é uma ferramenta revolucionária projetada para transformar o fluxo de criação de propostas comerciais, reduzindo o ciclo de vendas de dias para minutos e encantando clientes desde o primeiro contato.
 
-Utilizando transcrição em tempo real, análise por IA e automação robótica de processos (RPA), esta aplicação gera um protótipo de software funcional e personalizado *durante* a reunião com o cliente, criando um inesquecível "efeito UAU".
+Utilizando transcrição em tempo real do microfone do operador, análise por IA e automação robótica de processos (RPA), esta aplicação gera um protótipo de software funcional e personalizado *durante* a reunião com o cliente, criando um inesquecível "efeito UAU".
 
 ---
 
 ### 🚀 Principais Funcionalidades
 
-* **Transcrição em Tempo Real:** Conecta-se a uma fonte de áudio (como o OBS) para transcrever a conversa da reunião ao vivo.
-* **Análise por IA:** Utiliza um modelo de linguagem avançado (GPT-4) para analisar a transcrição completa, filtrar conversas triviais e extrair os requisitos essenciais do projeto.
-* **Geração de Proposta Otimizada:** A IA cria uma pré-análise de negócios e um prompt de alta performance otimizado para ferramentas de prototipagem.
-* **Criação de Protótipo Automatizada:** Um robô (RPA com Playwright) abre a ferramenta de prototipagem (LovableAI), insere o prompt e os arquivos do cliente, e gera um protótipo funcional em tempo real.
-* **Interface Simples:** Uma interface desktop intuitiva para controlar a transcrição e iniciar o processo de geração.
+* **Transcrição Direta do Microfone:** Captura o áudio diretamente do microfone padrão do usuário, sem necessidade de softwares de terceiros.
+* **Análise por IA:** Utiliza GPT-4 para analisar a transcrição, filtrar conversas triviais e extrair os requisitos essenciais do projeto.
+* **Geração de Proposta Otimizada:** Cria uma pré-análise de negócios e um prompt de alta performance otimizado para ferramentas de prototipagem.
+* **Criação de Protótipo Automatizada:** Usa Playwright para abrir o LovableAI, realizar login, inserir o prompt, anexar arquivos e gerar um protótipo funcional em tempo real.
+* **Log de Progresso Visual:** O usuário acompanha em tempo real cada passo que a automação está executando.
 
 ### 🛠️ Tecnologias Utilizadas
 
-* **Linguagem:** Python 3
+* **Linguagem:** Python 3.11
 * **Interface Gráfica:** CustomTkinter
 * **Orquestração de IA:** OpenAI API (GPT-4 Turbo)
 * **Transcrição de Áudio:** Google Cloud Speech-to-Text API
+* **Captura de Áudio:** Sounddevice
 * **Automação Web (RPA):** Playwright
-* **Captura de Áudio:** SoundDevice & VB-CABLE (ponte de áudio virtual)
 
 ---
 
-### 🏁 Começando
+### 🏁 Começando (Para Desenvolvedores)
 
-Siga estas instruções para configurar o ambiente de desenvolvimento.
-
-#### Pré-requisitos
-
-* Python 3.9+
+#### Pré-requisitos de Software
+* Python 3.11 (recomendado)
 * Git
-* [OBS Studio](https://obsproject.com/)
-* [VB-CABLE Virtual Audio Device](https://vb-audio.com/Cable/)
+* Um microfone funcional configurado como padrão no sistema operacional.
 
 #### Instalação
-
-1.  **Clone o repositório:**
-    ```sh
-    git clone [https://github.com/seu-usuario/magic-meet-copilot.git](https://github.com/seu-usuario/magic-meet-copilot.git)
-    cd magic-meet-copilot
-    ```
-
-2.  **Crie e ative um ambiente virtual:**
-    ```sh
-    # Windows
-    python -m venv .venv
-    .venv\Scripts\activate
-
-    # macOS / Linux
-    python -m venv .venv
-    source .venv/bin/activate
-    ```
-
-3.  **Instale as dependências:**
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-4.  **Instale os navegadores do Playwright:**
-    ```sh
-    playwright install
-    ```
+1.  Clone o repositório.
+2.  Crie e ative um ambiente virtual (`py -3.11 -m venv .venv` e `.\.venv\Scripts\activate`).
+3.  Atualize as ferramentas do pip: `python -m pip install --upgrade pip setuptools wheel`.
+4.  Instale as dependências: `pip install -r requirements.txt`.
+5.  Instale os navegadores do Playwright: `playwright install`.
 
 #### Configuração
-
 O projeto requer dois arquivos de configuração na raiz:
-
-1.  **`.env`**: Crie este arquivo para armazenar suas chaves de API e URLs. Preencha com suas informações.
-    ```env
-    OPENAI_API_KEY="sk-..."
-    LOVABLE_EMAIL="seu-email@exemplo.com"
-    LOVABLE_PASSWORD="sua-senha-aqui"
-    LOVABLE_URL="[https://app.lovable.ai/](https://app.lovable.ai/)"
-    GOOGLE_APPLICATION_CREDENTIALS="google_credentials.json"
-    ```
-
-2.  **`google_credentials.json`**: Este é o arquivo de chave da sua conta de serviço do Google Cloud. Faça o download no painel do GCP e coloque-o na pasta raiz do projeto. Lembre-se de adicionar este arquivo ao seu `.gitignore`.
+1.  **`.env`**: Para as chaves de API e credenciais (OpenAI, Lovable, etc.).
+2.  **`google_credentials.json`**: Chave da conta de serviço do Google Cloud para a API Speech-to-Text.
 
 ---
 
-### 🎈 Como Usar
+### 🎈 Como Usar a Aplicação
 
-1.  **Configure a Ponte de Áudio:**
-    * No OBS, configure o áudio da sua reunião para ser monitorado e enviado para o `CABLE Input`.
-    * Nas configurações de som do Windows, defina o dispositivo de **Entrada** padrão como `CABLE Output`.
-
-2.  **Execute a Aplicação:**
-    * Com o ambiente virtual ativo, rode o comando:
-        ```sh
-        python main.py
-        ```
-
+1.  **Verifique o Microfone:** Certifique-se de que seu microfone desejado está definido como o dispositivo de entrada padrão nas configurações de som do seu sistema operacional.
+2.  **Execute a Aplicação:** `.\.venv\Scripts\python.exe main.py` ou use o script `run.bat`.
 3.  **Durante a Reunião:**
-    * Preencha as informações do cliente (Nome, Cores, Logo).
-    * Clique em **▶️ Iniciar Transcrição**. A conversa começará a aparecer na tela.
-    * Ao final da discussão de requisitos, clique em **⏹️ Parar Transcrição**.
-    * Clique em **✨ Criar Protótipo!** e aguarde a mágica acontecer. O link do protótipo e a análise aparecerão nos campos de resultado.
+    * Preencha as informações do cliente.
+    * Clique em **▶️ Iniciar Transcrição**. A aplicação começará a ouvir sua voz.
+    * **Lembre-se da "Técnica do Espelho":** Repita e resuma os pontos importantes do cliente para que eles sejam capturados na transcrição.
+    * Ao final, clique em **⏹️ Parar Transcrição**.
+    * Clique em **✨ Criar Protótipo!** e acompanhe o progresso na caixa de log.

@@ -1,52 +1,42 @@
 =====================================================
- Guia de Instalação e Uso v2.1 - Magic Meet Copilot
+ Guia de Instalação e Uso Final - Magic Meet Copilot
 =====================================================
 
-Olá! Para usar o Magic Meet Copilot, siga os passos abaixo.
+Bem-vindo! Para usar o Magic Meet Copilot, a configuração é muito simples.
 
 ---------------------------------------------------------------------
-PASSO 1: REQUISITOS NO SEU COMPUTADOR (FEITO SÓ UMA VEZ)
+PASSO 1: REQUISITOS (FEITO SÓ UMA VEZ)
 ---------------------------------------------------------------------
 
-1.  **Python:** Você precisa ter o Python instalado.
-    * Baixe e instale a partir deste link: https://www.python.org/downloads/
-    * **IMPORTANTE:** Durante a instalação, marque a caixa "Add Python to PATH".
+1.  **Instalar Python:** Você precisa ter o Python 3.11 instalado.
+    * Baixe aqui: https://www.python.org/downloads/release/python-3119/
+    * **IMPORTANTE:** Durante a instalação, marque a caixa "Add python.exe to PATH".
 
-2.  **OBS Studio:**
-    * Baixe e instale a partir deste link: https://obsproject.com/
-
-3.  **VB-CABLE (Cabo de Áudio Virtual):**
-    * Baixe e instale a partir deste link: https://vb-audio.com/Cable/
+2.  **Configurar Microfone:**
+    * Certifique-se de que seu microfone (preferencialmente um headset) está conectado.
+    * Nas "Configurações de Som" do Windows, na seção "Entrada", verifique se o seu microfone está selecionado como o dispositivo padrão.
 
 ---------------------------------------------------------------------
-PASSO 2: CONFIGURAR A "PONTE DE ÁUDIO" (FEITO SÓ UMA VEZ)
+PASSO 2: EXECUTANDO O MAGIC MEET COPILOT
 ---------------------------------------------------------------------
 
-Esta configuração fará com que o áudio da sua reunião seja enviado para o Copilot.
-
-1.  **No OBS:**
-    * Configure o "Dispositivo de monitoramento" para o "CABLE Input".
-    * Nas "Propriedades de Áudio Avançadas", configure a fonte de áudio da reunião para "Monitorar e enviar".
-
-2.  **No Windows:**
-    * Nas "Configurações de Som", configure o "Dispositivo de Entrada" padrão para o "CABLE Output".
-
----------------------------------------------------------------------
-PASSO 3: PRIMEIRO USO DO MAGIC MEET COPILOT
----------------------------------------------------------------------
-
-1.  Descompacte o arquivo `.zip` que você recebeu em uma pasta de sua preferência.
+1.  Descompacte o arquivo .zip em uma pasta no seu computador.
 2.  Dê um **duplo clique no arquivo `run.bat`**.
 
-    * Uma janela de terminal preta vai aparecer. Na primeira vez, ele vai instalar tudo o que precisa. Isso pode levar alguns minutos. Por favor, aguarde.
-    * Ao final, o Magic Meet Copilot irá iniciar automaticamente.
+    * Na primeira vez, uma janela de terminal preta vai aparecer e instalar tudo o que precisa. Isso pode levar alguns minutos. Aguarde.
+    * Quando terminar, o programa Magic Meet Copilot irá iniciar.
+    * Nas vezes seguintes, ele abrirá muito mais rápido.
 
 ---------------------------------------------------------------------
-PASSO 4: USO DIÁRIO
+LEMBRETE DE USO OBRIGATÓRIO
 ---------------------------------------------------------------------
+A IA só "ouve" a sua voz. Para que o protótipo seja fiel ao desejo do cliente, você precisa usar a **"Técnica do Espelho"**:
 
-1.  Abra o OBS.
-2.  Vá para a pasta do programa e dê um duplo clique no `run.bat`.
-    * A partir da segunda vez, ele será muito mais rápido e iniciará a aplicação em poucos segundos.
+-> Ouça o que o cliente diz.
+-> Repita ou resuma os pontos importantes em voz alta.
+
+Exemplo: Se o cliente diz "Preciso de um gráfico de pizza", você deve dizer "Ok, entendido. Então um dos componentes será um gráfico de pizza mostrando as vendas por categoria."
+
+A qualidade do protótipo depende diretamente disso!
 
 =====================================================
