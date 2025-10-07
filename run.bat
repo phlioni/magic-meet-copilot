@@ -25,16 +25,16 @@ echo.
 :: O resto do script continua como antes...
 
 :: Etapa 2: Criar venv se não existir
-IF NOT EXIST .venv (
+IF NOT EXIST venv (
     echo Criando ambiente virtual com Python 3.11...
-    py -3.11 -m venv .venv
+    py -3.11 -m venv venv
 )
 
 :: Etapa 3: Instalar dependências
 echo Verificando dependencias...
-.\.venv\Scripts\pip.exe install -r requirements.txt > nul
-.\.venv\Scripts\playwright.exe install > nul
+.\venv\Scripts\pip.exe install -r requirements.txt > nul
+.\venv\Scripts\playwright.exe install > nul
 
 :: Etapa 4: Rodar a aplicação
 echo Iniciando Magic Meet Copilot...
-.\.venv\Scripts\python.exe main.py
+.\venv\Scripts\python.exe main.py

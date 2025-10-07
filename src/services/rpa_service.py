@@ -39,7 +39,7 @@ def criar_prototipo_lovable(prompt: str, logo_path: str = None, progress_callbac
 
     with sync_playwright() as p:
         report_progress("-> [⚙️] Iniciando navegador...")
-        browser = p.chromium.launch(headless=True)
+        browser = p.chromium.launch(headless=False)
         page = browser.new_page()
         
         try:
@@ -56,18 +56,33 @@ def criar_prototipo_lovable(prompt: str, logo_path: str = None, progress_callbac
             if logo_path and os.path.exists(logo_path):
                 report_progress("-> [⚙️] Anexando arquivo de logo...")
                 try:
+                    # 1. Clica no botão "Anexar" para iniciar o processo.
+                    page.get_by_role("button", name="Anexar").click()
+                    
+                    # --- NOVA VERIFICAÇÃO PARA O POP-UP DE DICA ---
+                    # Define o seletor para o botão "Add Files" dentro do pop-up de dica.
+                    onboarding_popup_button = page.locator("div:has-text('Try adding a file')").get_by_role("button", name="Add Files")
+                    
+                    # Verifica se o pop-up está visível por um curto período.
+                    if onboarding_popup_button.is_visible(timeout=2000):
+                        report_progress("-> [⚙️] Pop-up de dica detectado. Clicando nele...")
+                        onboarding_popup_button.click()
+                    # -----------------------------------------------
+
+                    # 2. Continua com o fluxo normal: espera a janela de arquivos e clica no botão do modal principal.
                     with page.expect_file_chooser() as fc_info:
-                        page.get_by_role("button", name="Anexar").click()
+                        page.locator('[data-testid="file-upload-button"]').click()
                     
                     file_chooser = fc_info.value
                     file_chooser.set_files(logo_path)
                     
+                    # 3. Tenta clicar no botão "Adicionar Arquivos" para confirmar.
                     try:
                         add_files_button = page.get_by_role("button", name="Adicionar Arquivos")
-                        add_files_button.wait_for(state="visible", timeout=3000)
+                        add_files_button.wait_for(state="visible", timeout=10000)
                         add_files_button.click()
                     except TimeoutError:
-                        pass
+                        pass 
                     report_progress("-> [✅] Logo anexado.")
                 except Exception as e:
                     report_progress(f"-> [⚠️] Não foi possível anexar o logo: {e}")
@@ -77,7 +92,7 @@ def criar_prototipo_lovable(prompt: str, logo_path: str = None, progress_callbac
             
             report_progress("-> [⏳] Aguardando geração do Lovable... (Este passo pode levar vários minutos)")
             preview_link_selector = 'a[href*="preview--"]'
-            page.wait_for_selector(preview_link_selector, timeout=0)
+            page.wait_for_selector(preview_link_selector, timeout=0) 
             
             report_progress("-> [⚙️] Extraindo link do protótipo...")
             link_prototipo = page.get_attribute(preview_link_selector, 'href')

@@ -1,0 +1,42 @@
+=====================================================
+ Guia de Instalação e Uso Final - Magic Meet Copilot
+=====================================================
+
+Bem-vindo! Para usar o Magic Meet Copilot, a configuração é muito simples.
+
+---------------------------------------------------------------------
+PASSO 1: REQUISITOS (FEITO SÓ UMA VEZ)
+---------------------------------------------------------------------
+
+1.  **Instalar Python:** Você precisa ter o Python 3.11 instalado.
+    * Baixe aqui: https://www.python.org/downloads/release/python-3119/
+    * **IMPORTANTE:** Durante a instalação, marque a caixa "Add python.exe to PATH".
+
+2.  **Configurar Microfone:**
+    * Certifique-se de que seu microfone (preferencialmente um headset) está conectado.
+    * Nas "Configurações de Som" do Windows, na seção "Entrada", verifique se o seu microfone está selecionado como o dispositivo padrão.
+
+---------------------------------------------------------------------
+PASSO 2: EXECUTANDO O MAGIC MEET COPILOT
+---------------------------------------------------------------------
+
+1.  Descompacte o arquivo .zip em uma pasta no seu computador.
+2.  Dê um **duplo clique no arquivo `run.bat`**.
+
+    * Na primeira vez, uma janela de terminal preta vai aparecer e instalar tudo o que precisa. Isso pode levar alguns minutos. Aguarde.
+    * Quando terminar, o programa Magic Meet Copilot irá iniciar.
+    * Nas vezes seguintes, ele abrirá muito mais rápido.
+
+---------------------------------------------------------------------
+LEMBRETE DE USO OBRIGATÓRIO
+---------------------------------------------------------------------
+A IA só "ouve" a sua voz. Para que o protótipo seja fiel ao desejo do cliente, você precisa usar a **"Técnica do Espelho"**:
+
+-> Ouça o que o cliente diz.
+-> Repita ou resuma os pontos importantes em voz alta.
+
+Exemplo: Se o cliente diz "Preciso de um gráfico de pizza", você deve dizer "Ok, entendido. Então um dos componentes será um gráfico de pizza mostrando as vendas por categoria."
+
+A qualidade do protótipo depende diretamente disso!
+
+=====================================================
