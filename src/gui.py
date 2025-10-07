@@ -1,16 +1,14 @@
+# src/gui.py
+
 import customtkinter as ctk
 from customtkinter import filedialog
 import threading
 import os
 from src.core.orchestrator import iniciar_processo_criacao
-from src.services.transcription_service import TranscriptionService, set_google_credentials
+from src.services.transcription_service import TranscriptionService
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
-
-# A chamada foi movida para o main.py para garantir a ordem de execução, 
-# mas mantê-la aqui não causa problemas.
-# set_google_credentials() 
 
 class App(ctk.CTk):
     def __init__(self):
@@ -65,7 +63,16 @@ class App(ctk.CTk):
         output_frame.grid(row=4, column=0, padx=20, pady=10, sticky="nsew")
         output_frame.grid_columnconfigure(0, weight=1)
         output_frame.grid_rowconfigure(2, weight=1) 
-        ctk.CTkLabel(output_frame, text="Resultados Gerados", font=ctk.CTkFont(weight="bold")).grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+        
+        output_header_frame = ctk.CTkFrame(output_frame, fg_color="transparent")
+        output_header_frame.grid(row=0, column=0, columnspan=2, padx=10, pady=10, sticky="ew")
+        output_header_frame.grid_columnconfigure(0, weight=1)
+        
+        ctk.CTkLabel(output_header_frame, text="Resultados Gerados", font=ctk.CTkFont(weight="bold")).grid(row=0, column=0, sticky="w")
+
+        self.save_button = ctk.CTkButton(output_header_frame, text="Salvar Análise (.txt)", state="disabled", command=self.save_analysis_file)
+        self.save_button.grid(row=0, column=1, sticky="e")
+
         self.link_textbox = ctk.CTkTextbox(output_frame, wrap="word", height=20, state="disabled")
         self.link_textbox.grid(row=1, column=0, padx=10, pady=(0,5), sticky="nsew")
         self.pre_analysis_textbox = ctk.CTkTextbox(output_frame, wrap="word", height=150, state="disabled")
@@ -85,6 +92,8 @@ class App(ctk.CTk):
         self.progress_log_textbox.configure(state="disabled")
 
     def run_creation_process(self):
+        self.save_button.configure(state="disabled")
+        
         self.progress_log_textbox.configure(state="normal")
         self.progress_log_textbox.delete("1.0", "end")
         self.progress_log_textbox.configure(state="disabled")
@@ -105,6 +114,31 @@ class App(ctk.CTk):
             progress_callback=self.log_progress
         )
         self.after(0, self.update_gui_results, pre_analise, prompt_lovable, link_prototipo)
+
+    def save_analysis_file(self):
+        text_to_save = self.pre_analysis_textbox.get("1.0", "end-1c")
+        if not text_to_save.strip():
+            return
+            
+        client_name = self.client_name_entry.get().strip()
+        if not client_name:
+            client_name = "Cliente"
+        
+        suggested_filename = f"Pre-Analise - {client_name}.txt"
+
+        filepath = filedialog.asksaveasfilename(
+            initialfile=suggested_filename,
+            defaultextension=".txt",
+            filetypes=[("Text Documents", "*.txt"), ("All files", "*.*")],
+            title="Salvar Documento de Pré-Análise"
+        )
+        
+        if filepath:
+            try:
+                with open(filepath, "w", encoding="utf-8") as file:
+                    file.write(text_to_save)
+            except Exception as e:
+                print(f"Erro ao salvar arquivo: {e}")
 
     def select_logo_file(self):
         filepath = filedialog.askopenfilename(title="Selecione o arquivo de logo", filetypes=(("Imagens", "*.png *.jpg *.jpeg *.svg"), ("Todos os arquivos", "*.*")))
@@ -143,12 +177,19 @@ class App(ctk.CTk):
 
         self.pre_analysis_textbox.configure(state="normal")
         self.pre_analysis_textbox.delete("1.0", "end")
-        self.pre_analysis_textbox.insert("1.0", f"--- PRÉ-ANÁLISE ---\n\n{pre_analise}")
+        self.pre_analysis_textbox.insert("1.0", pre_analise)
         self.pre_analysis_textbox.configure(state="disabled")
 
         self.lovable_prompt_textbox.configure(state="normal")
         self.lovable_prompt_textbox.delete("1.0", "end")
         self.lovable_prompt_textbox.insert("1.0", f"--- PROMPT UTILIZADO ---\n\n{prompt_lovable}")
         self.lovable_prompt_textbox.configure(state="disabled")
+        
+        if pre_analise and "Erro" not in pre_analise and "Falha" not in pre_analise:
+            self.save_button.configure(state="normal")
 
         self.create_button.configure(state="normal", text="✨ Criar Protótipo!")
+
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
